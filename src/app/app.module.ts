@@ -1,20 +1,25 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
-import { AgGridModule } from 'ag-grid-angular';
 import { AppComponent } from './app.component';
-import { HelloComponent } from './hello.component';
+import {AgGridModule} from 'ag-grid-angular'; 
+import { TotalValueRenderer } from './simplerender.component';
+import {BttnCellRenderer} from './bttn-cell1-renderer.component';
 import * as $ from 'jquery';
-import { BtnCellRenderer } from './bttn-cell1-renderer.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
-    FormsModule,
-    AgGridModule.withComponents([BtnCellRenderer])
-  ],
-  declarations: [AppComponent, HelloComponent],
+    AgGridModule.withComponents([TotalValueRenderer,BttnCellRenderer]),
+    NgbModule
+  ], 
+  providers: [
+    BttnCellRenderer 
+],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

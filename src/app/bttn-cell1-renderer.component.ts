@@ -1,16 +1,21 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Injectable, OnDestroy } from "@angular/core"; 
 import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { ICellRendererParams } from 'ag-grid-community';
+import { IAfterGuiAttachedParams, ICellRendererParams } from 'ag-grid-community'; 
+import * as $ from 'jquery';
+@Injectable()
 
 @Component({
-  selector: 'btn-cell-renderer',
+  selector: "bttn-cell-renderer",
   template: `
-    <button (click)="btnClickedHandler()">Click me!</button>
+    <button (click)="btnClickedHandler($event)">Edit</button>
   `
 })
-export class BtnCellRenderer implements ICellRendererAngularComp, OnDestroy {
+export class BttnCellRenderer implements ICellRendererAngularComp, OnDestroy {
   refresh(params: ICellRendererParams): boolean {
-    throw new Error('Method not implemented.');
+    throw new Error("Method not implemented.");
+  }
+  afterGuiAttached?(params?: IAfterGuiAttachedParams): void {
+    throw new Error("Method not implemented.");
   }
   private params: any;
 
@@ -18,7 +23,7 @@ export class BtnCellRenderer implements ICellRendererAngularComp, OnDestroy {
     this.params = params;
   }
 
-  btnClickedHandler() {
+  btnClickedHandler(vall) {
     this.params.clicked(this.params.value);
   }
 
